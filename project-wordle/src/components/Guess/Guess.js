@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-function Guess({ children }) {
+function Guess({ children, status }) {
   return (
-    <p class="guess">
-      {Array.from(children).map((letter, i) => (
-        <span key={`${letter}-${i}`} class="cell">
+    <p className="guess">
+      {Array.from(children).map(({ letter, status }, i) => (
+        <span key={`${letter}-${i}`} className={`cell ${status}`}>
           {letter}
         </span>
       ))}

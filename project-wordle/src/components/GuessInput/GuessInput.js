@@ -18,7 +18,7 @@ function GuessInput({ handleGuess, noMoreGuesses }) {
         minLength={5}
         maxLength={5}
         pattern=".{5,5}" // https://stackoverflow.com/questions/10281962/is-there-a-minlength-validation-attribute-in-html
-        onChange={(ev) => setGuess(ev.target.value.toUpperCase())}
+        onChange={(ev) => setGuess(ev.target.value.toUpperCase().trim())}
         disabled={noMoreGuesses}
       />
     </form>
