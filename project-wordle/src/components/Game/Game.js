@@ -6,6 +6,7 @@ import GuessInput from "../GuessInput";
 import GuessList from "../GuessList";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { checkGuess } from "../../game-helpers";
+import Banner from "../Banner";
 // Pick a random word on every pageload.
 const guessAnswer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
@@ -19,12 +20,16 @@ const emptyGuesses = range(NUM_OF_GUESSES_ALLOWED).fill(
 
 function Game() {
   const [guessList, setGuessList] = useState(emptyGuesses);
-
+  const [isWinner, setIsWinner] = useState(false);
   const [allowedGuesses, setAllowedGuesses] = useState(NUM_OF_GUESSES_ALLOWED);
   // guesses should work as a queued
   const handleGuess = (guess) => {
     if (allowedGuesses >= 0) {
       const checkedGuess = checkGuess(guess, guessAnswer);
+      if (checkedGuess.every((guess) => guess.status === "correct")) {
+        setIsWinner(true);
+        console.log("entra");
+      }
       const newGuessesList = [...guessList];
       // Insert the new guess in increasing indexes, while poping the last empty placeholder so total guesses stay the same
       newGuessesList.splice(
@@ -45,8 +50,16 @@ function Game() {
       <GuessList guessList={guessList} guessAnswer={guessAnswer} />
       <GuessInput
         handleGuess={handleGuess}
-        noMoreGuesses={allowedGuesses === 0}
+        noMoreGuesses={isWinner || allowedGuesses === 0}
       />
+
+      {(isWinner || allowedGuesses === 0) && (
+        <Banner
+          isWinner={isWinner}
+          answer={guessAnswer}
+          usedGuesses={NUM_OF_GUESSES_ALLOWED - allowedGuesses}
+        />
+      )}
     </>
   );
 }

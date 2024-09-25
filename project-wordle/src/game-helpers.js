@@ -8,7 +8,6 @@ export function checkGuess(guess, answer) {
   // dealt with this character (it's correct, or misplaced).
   const SOLVED_CHAR = "✓";
 
-  // console.log({ guess });
   if (!guess) {
     return null;
   }
