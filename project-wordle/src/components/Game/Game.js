@@ -25,7 +25,15 @@ function Game() {
   const handleGuess = (guess) => {
     if (allowedGuesses >= 0) {
       const checkedGuess = checkGuess(guess, guessAnswer);
-
+      const newGuessesList = [...guessList];
+      // Insert the new guess in increasing indexes, while poping the last empty placeholder so total guesses stay the same
+      newGuessesList.splice(
+        NUM_OF_GUESSES_ALLOWED - allowedGuesses,
+        0,
+        checkedGuess
+      );
+      newGuessesList.pop();
+      setGuessList(newGuessesList);
       setAllowedGuesses(allowedGuesses - 1);
     } else {
       window.alert("No more guesses for you");

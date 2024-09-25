@@ -2,7 +2,6 @@ import React from "react";
 import Guess from "../Guess/Guess";
 
 function GuessList({ guessList, guessAnswer }) {
-  console.log({ guessAnswer, guessList });
   return (
     <div className="guess-results">
       {guessList?.length > 0 &&
