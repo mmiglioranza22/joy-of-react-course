@@ -3,16 +3,10 @@ import React from "react";
 function Keys({ children }) {
   console.log({ children });
   return (
-    <p className="guess">
+    <p className="key">
       <span key={`${children.letter}`} className={`letter ${children.status}`}>
         {children.letter}
       </span>
-
-      {/* {Array.from(children).map(({ letter, status }, i) => (
-        <span key={`${letter}-${i}`} className={`cell ${status}`}>
-          {letter}
-        </span>
-      ))} */}
     </p>
   );
 }

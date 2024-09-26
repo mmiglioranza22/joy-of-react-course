@@ -16,15 +16,22 @@ export const range = (start, end, step = 1) => {
 
 export const mapGuessedKeys = (guessKeystrokes, keyboardLayout) => {
   console.log({ guessKeystrokes, keyboardLayout });
-  // const mappedStrokes = guessKeystrokes.reduce(
-  //   (a, c) => ({ ...a, [c.letter]: { status: c.status } }),
-  //   {}
-  // );
-  // const newKeyboardLayout = [];
-  // for (const key in keyboardLayout) {
-  //   const mappedStatus = mappedStrokes[key]?.status ?? "";
-  //   newKeyboardLayout.push({ letter: key, status: mappedStatus });
-  // }
 
-  // return newKeyboardLayout;
+  const mappedLayout = keyboardLayout.reduce(
+    (a, c) => ({ ...a, [c.letter]: { status: c.status } }),
+    {}
+  );
+  const mappedGuessedStrokes = guessKeystrokes.reduce(
+    (a, c) => ({ ...a, [c.letter]: { status: c.status } }),
+    {}
+  );
+
+  const newLayout = [];
+
+  for (const key in mappedLayout) {
+    const mappedStatus = mappedGuessedStrokes[key]?.status ?? "";
+    newLayout.push({ letter: key, status: mappedStatus });
+  }
+  console.log({ newLayout });
+  return newLayout;
 };

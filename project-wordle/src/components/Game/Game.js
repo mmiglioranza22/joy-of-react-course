@@ -29,8 +29,8 @@ function Game() {
   const handleGuess = (guess) => {
     if (allowedGuesses >= 0) {
       const checkedGuess = checkGuess(guess, guessAnswer);
-      const checkedKeys = mapGuessedKeys(checkedGuess, guessedKeys);
-      // setGuessedKeys(checkedKeys);
+      const checkedKeys = mapGuessedKeys(checkedGuess, emptyStrokes);
+      setGuessedKeys(checkedKeys);
 
       if (checkedGuess.every((guess) => guess.status === "correct")) {
         setIsWinner(true);

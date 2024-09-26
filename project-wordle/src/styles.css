@@ -94,7 +94,7 @@ h1 {
   flex: 1;
   width: 100%;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -105,7 +105,7 @@ h1 {
 }
 .key {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   margin-bottom: 4px;
 }
 
@@ -121,15 +121,16 @@ h1 {
 }
 
 .letter {
-  /* position: relative; */
+  position: relative;
   min-width: 40px;
   min-height: 20px;
   display: grid;
   place-content: center;
   aspect-ratio: 1 / 1;
   border: 2px solid var(--color-gray-700);
-  border-radius: var(--radius);
+  border-radius: 8px;
   font-size: 1rem;
+  font-weight: 700;
 }
 
 /*
@@ -149,17 +150,20 @@ h1 {
   --radius: 0px 0px 0px 4px;
 }
 
-.cell.correct {
+.cell.correct,
+.letter.correct {
   background: var(--color-success);
   border-color: var(--color-success);
   color: white;
 }
-.cell.incorrect {
+.cell.incorrect,
+.letter.incorrect {
   background: var(--color-gray-300);
   border-color: var(--color-gray-300);
   color: white;
 }
-.cell.misplaced {
+.cell.misplaced,
+.letter.misplaced {
   background: var(--color-warning);
   border-color: var(--color-warning);
   color: white;
