@@ -8,10 +8,6 @@ import { KEYS, NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { checkGuess } from "../../game-helpers";
 import Banner from "../Banner";
 import KeysList from "../KeysList";
-// Pick a random word on every pageload.
-const guessAnswer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ guessAnswer });
 
 const emptyGuessPlaceholder = { letter: " ", status: "" };
 
@@ -21,7 +17,7 @@ const emptyGuesses = range(NUM_OF_GUESSES_ALLOWED).fill(
 
 const emptyStrokes = KEYS.split("").map((key) => ({ letter: key, status: "" }));
 function Game() {
-  const [gameAnswer, setGameAnswer] = useState(guessAnswer);
+  const [gameAnswer, setGameAnswer] = useState(sample(WORDS));
   const [guessList, setGuessList] = useState(emptyGuesses);
   const [isWinner, setIsWinner] = useState(false);
   const [allowedGuesses, setAllowedGuesses] = useState(NUM_OF_GUESSES_ALLOWED);
@@ -29,7 +25,7 @@ function Game() {
 
   const handleGuess = (guess) => {
     if (allowedGuesses >= 0) {
-      const checkedGuess = checkGuess(guess, guessAnswer);
+      const checkedGuess = checkGuess(guess, gameAnswer);
       const checkedKeys = mapGuessedKeys(checkedGuess, emptyStrokes);
       setGuessedKeys(checkedKeys);
 
@@ -58,6 +54,7 @@ function Game() {
     setAllowedGuesses(NUM_OF_GUESSES_ALLOWED);
     setGuessedKeys(emptyStrokes);
   };
+  console.log({ gameAnswer });
 
   return (
     <>
@@ -71,7 +68,7 @@ function Game() {
       {(isWinner || allowedGuesses === 0) && (
         <Banner
           isWinner={isWinner}
-          answer={guessAnswer}
+          answer={gameAnswer}
           usedGuesses={NUM_OF_GUESSES_ALLOWED - allowedGuesses}
           resetGame={handleReset}
         />
