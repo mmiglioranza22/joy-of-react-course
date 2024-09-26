@@ -4,7 +4,7 @@ import { mapGuessedKeys, range, sample } from "../../utils";
 import { WORDS } from "../../data";
 import GuessInput from "../GuessInput";
 import GuessList from "../GuessList";
-import { KEYBOARD_LAYOUT, KEYS, NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import { KEYS, NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { checkGuess } from "../../game-helpers";
 import Banner from "../Banner";
 import KeysList from "../KeysList";
@@ -21,6 +21,7 @@ const emptyGuesses = range(NUM_OF_GUESSES_ALLOWED).fill(
 
 const emptyStrokes = KEYS.split("").map((key) => ({ letter: key, status: "" }));
 function Game() {
+  const [gameAnswer, setGameAnswer] = useState(guessAnswer);
   const [guessList, setGuessList] = useState(emptyGuesses);
   const [isWinner, setIsWinner] = useState(false);
   const [allowedGuesses, setAllowedGuesses] = useState(NUM_OF_GUESSES_ALLOWED);
@@ -50,6 +51,14 @@ function Game() {
     }
   };
 
+  const handleReset = () => {
+    setGameAnswer(sample(WORDS));
+    setIsWinner(false);
+    setGuessList(emptyGuesses);
+    setAllowedGuesses(NUM_OF_GUESSES_ALLOWED);
+    setGuessedKeys(emptyStrokes);
+  };
+
   return (
     <>
       <GuessList guessList={guessList} />
@@ -64,6 +73,7 @@ function Game() {
           isWinner={isWinner}
           answer={guessAnswer}
           usedGuesses={NUM_OF_GUESSES_ALLOWED - allowedGuesses}
+          resetGame={handleReset}
         />
       )}
     </>

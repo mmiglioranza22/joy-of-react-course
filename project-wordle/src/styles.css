@@ -248,6 +248,15 @@ h1 {
   margin-bottom: 0.5em;
 }
 
+.reset-button {
+  border: 2px solid var(--color-gray-700);
+  width: 120px;
+  text-align: center;
+  background: var(--color-gray-700);
+  color: #000;
+  border-radius: 8px;
+  margin-top: 10px;
+}
 /*
   Keyframe animations
 */

@@ -15,8 +15,6 @@ export const range = (start, end, step = 1) => {
 };
 
 export const mapGuessedKeys = (guessKeystrokes, keyboardLayout) => {
-  console.log({ guessKeystrokes, keyboardLayout });
-
   const mappedLayout = keyboardLayout.reduce(
     (a, c) => ({ ...a, [c.letter]: { status: c.status } }),
     {}
@@ -32,6 +30,6 @@ export const mapGuessedKeys = (guessKeystrokes, keyboardLayout) => {
     const mappedStatus = mappedGuessedStrokes[key]?.status ?? "";
     newLayout.push({ letter: key, status: mappedStatus });
   }
-  console.log({ newLayout });
+
   return newLayout;
 };
