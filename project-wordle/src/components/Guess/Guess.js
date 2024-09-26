@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-function Guess({ children, status }) {
+function Guess({ children }) {
   return (
     <p className="guess">
       {Array.from(children).map(({ letter, status }, i) => (
