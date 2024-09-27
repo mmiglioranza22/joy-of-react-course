@@ -1,5 +1,6 @@
 import React from "react";
-
+// This could be a generalized banner component for other uses (not the case for the exercise, but still in the lines of
+// reusable components and composition in React)
 function Banner({ isWinner, answer, usedGuesses, resetGame }) {
   return isWinner ? (
     <div className="happy banner">
