@@ -4,11 +4,14 @@ import Button from "../Button";
 
 import styles from "./ToastPlayground.module.css";
 
+import ToastShelf from "../ToastShelf/ToastShelf";
+
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
 function ToastPlayground() {
-  const [radioOption, setRadioOption] = React.useState("notice");
-  const [toastMessage, setToastMessage] = React.useState("");
+  const [variant, setVariant] = React.useState("notice");
+  const [message, setMessage] = React.useState("");
+  const [toastList, setToastList] = React.useState([]);
 
   return (
     <div className={styles.wrapper}>
@@ -16,12 +19,16 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
+      <ToastShelf toastList={toastList} setToastList={setToastList} />
+
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          // handleToast({ toastMessage, radioOption })
-          console.log({ toastMessage, radioOption });
-          setToastMessage("");
+          setToastList([
+            ...toastList,
+            { variant, message, key: `${variant}-${message}` },
+          ]);
+          setMessage("");
         }}
       >
         <div className={styles.controlsWrapper}>
@@ -37,8 +44,8 @@ function ToastPlayground() {
               <textarea
                 id="message"
                 className={styles.messageInput}
-                value={toastMessage}
-                onChange={(ev) => setToastMessage(ev.target.value)}
+                value={message}
+                onChange={(ev) => setMessage(ev.target.value)}
               />
             </div>
           </div>
@@ -55,8 +62,8 @@ function ToastPlayground() {
                       type="radio"
                       name="variant"
                       value={option}
-                      checked={option === radioOption}
-                      onChange={(ev) => setRadioOption(ev.target.value)}
+                      checked={option === variant}
+                      onChange={(ev) => setVariant(ev.target.value)}
                     />
                     {option}
                   </label>
