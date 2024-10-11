@@ -2,21 +2,20 @@ import React from "react";
 
 import Toast from "../Toast";
 import styles from "./ToastShelf.module.css";
+import { useToastContext } from "../ToastProvider";
 
-function ToastShelf({ toastList, setToastList }) {
+function ToastShelf() {
+  const { toastList, dismissToast } = useToastContext();
   return (
     toastList.length > 0 && (
       <ol className={styles.wrapper}>
         {toastList.map(({ variant, message, key, id }, i) => {
-          console.log({ id });
           return (
             <li className={styles.toastWrapper} key={key}>
               <Toast
                 variant={variant}
                 message={message}
-                handleDismiss={() =>
-                  setToastList([...toastList].filter((el) => el.id !== id))
-                }
+                handleDismiss={() => dismissToast(id)}
               />
             </li>
           );

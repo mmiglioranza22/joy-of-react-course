@@ -10,16 +10,11 @@ import { useToastContext } from "../ToastProvider";
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
 function ToastPlayground() {
-  const {
-    variant,
-    setVariant,
-    message,
-    setMessage,
-    toastList,
-    setToastList,
-    id: toastId,
-    setId,
-  } = useToastContext();
+  // form is controlled here, not by the toast provider (related responsability: create, store and dismiss toasts)
+  const [variant, setVariant] = React.useState("notice");
+  const [message, setMessage] = React.useState("");
+
+  const { createToast } = useToastContext();
 
   return (
     <div className={styles.wrapper}>
@@ -27,23 +22,13 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      <ToastShelf toastList={toastList} setToastList={setToastList} />
+      <ToastShelf />
 
       <form
         onSubmit={(event) => {
           event.preventDefault();
-
-          setToastList([
-            ...toastList,
-            {
-              variant,
-              message,
-              key: `${variant}-${message}-${toastId}`,
-              id: toastId,
-            },
-          ]);
+          createToast(message, variant);
           setMessage("");
-          setId((prev) => prev + 1);
         }}
       >
         <div className={styles.controlsWrapper}>
