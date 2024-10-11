@@ -24,14 +24,23 @@ function Toast({
   handleDismiss,
 }) {
   const Icon = ICONS_BY_VARIANT[variant];
-
+  // Addind the hook in here will invoke one too many eventListeners and flood the escape key listener with the same function
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>
         <Icon size={24} />
       </div>
-      <p className={styles.content}>{message}</p>
-      <button className={styles.closeButton} onClick={handleDismiss}>
+      <p className={styles.content}>
+        <VisuallyHidden>{variant}</VisuallyHidden>
+
+        {message}
+      </p>
+      <button
+        className={styles.closeButton}
+        onClick={handleDismiss}
+        aria-label="Dismiss message"
+        aria-live="off"
+      >
         <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
