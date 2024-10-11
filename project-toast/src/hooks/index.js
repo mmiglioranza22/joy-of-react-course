@@ -9,6 +9,6 @@ export const useEscapeKey = (callback) => {
     }
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
-  }, [callback]);
+  }, []);
   return callback;
 };
