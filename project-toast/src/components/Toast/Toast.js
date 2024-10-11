@@ -19,15 +19,12 @@ const ICONS_BY_VARIANT = {
 };
 
 function Toast({
-  show,
   variant = "notice",
   message = "This is a toast component!",
   handleDismiss,
 }) {
-  // const id = React.useId();
   const Icon = ICONS_BY_VARIANT[variant];
 
-  // if (show) {
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>
@@ -40,7 +37,6 @@ function Toast({
       </button>
     </div>
   );
-  // }
 }
 
 export default Toast;

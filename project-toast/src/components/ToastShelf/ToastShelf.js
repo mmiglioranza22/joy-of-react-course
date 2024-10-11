@@ -7,14 +7,15 @@ function ToastShelf({ toastList, setToastList }) {
   return (
     toastList.length > 0 && (
       <ol className={styles.wrapper}>
-        {toastList.map(({ variant, message, key }, i) => {
+        {toastList.map(({ variant, message, key, id }, i) => {
+          console.log({ id });
           return (
             <li className={styles.toastWrapper} key={key}>
               <Toast
                 variant={variant}
                 message={message}
                 handleDismiss={() =>
-                  setToastList([...toastList].filter((el) => el.key !== key))
+                  setToastList([...toastList].filter((el) => el.id !== id))
                 }
               />
             </li>
