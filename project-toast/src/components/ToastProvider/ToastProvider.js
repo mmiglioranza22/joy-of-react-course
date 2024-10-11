@@ -33,6 +33,7 @@ function ToastProvider({ children }) {
     });
     setToastList(nextToasts);
   }
+
   const value = React.useMemo(() => {
     return {
       toastList,
