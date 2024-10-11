@@ -42,9 +42,9 @@ function ToastProvider({ children }) {
   }, [toastList]);
 
   // adding a dismissAll will work in everyplace, but Escape key will be bound to this and will not work in other contexts / situations where it could be helpfull
-  function dismissAll() {
-    setToastList([]);
-  }
+  // function dismissAll() {
+  //   setToastList([]);
+  // }
 
   return (
     <ToastContext.Provider value={value}>{children}</ToastContext.Provider>
