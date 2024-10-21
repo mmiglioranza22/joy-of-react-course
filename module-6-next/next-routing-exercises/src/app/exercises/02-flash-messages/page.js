@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import ToastShelf from "../../../components/ToastShelf";
 
 function FlashMsgExercise() {
   return (
@@ -10,7 +9,6 @@ function FlashMsgExercise() {
         Got feedback? Please{" "}
         <Link href="/exercises/02-flash-messages/contact">contact us</Link>.
       </p>
-      <ToastShelf />
     </main>
   );
 }
