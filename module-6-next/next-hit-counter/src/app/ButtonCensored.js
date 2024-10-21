@@ -2,7 +2,7 @@
 import React from "react";
 
 // Distinction between Parent/Children, Owner/Ownee
-// Owner/Ownee relationshi[A Client component cannot render Server components (they transform them)
+// Owner/Ownee relationship: A Client component cannot render Server components (they transform them to client components)
 function ButtonCensored({ children }) {
   const [isBlurred, setIsBlurred] = React.useState(true);
   return (
